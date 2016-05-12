@@ -1,4 +1,4 @@
-﻿{{CONSULTING AGREEMENT}}
+DOES THIS WORK?  {{CONSULTING AGREEMENT}}
 
 Effective Date: {Effective Date}
 
@@ -54,8 +54,8 @@ Client does not guarantee to provide:  (i) a place where work on the services co
 
 	19.	Entire Agreement.  This Agreement constitutes the entire agreement between the parties relating to this subject matter and supersedes all prior or contemporaneous oral or written agreements concerning such subject matter.  The terms of this Agreement will govern all services undertaken by Consultant for Client; provided, however, that in the event of any conflict between the terms of this Agreement and any Project Assignment, the terms of the applicable Project Assignment will control.  This Agreement may only be changed or amended by mutual agreement of authorized representatives of the parties in writing.
 
-	20.	Negotiated Agreement.  Notwithstanding the general rules of construction, both parties acknowledge that each was given an equal opportunity to negotiate this Agreement, and agree that the identity of the drafter of this Agreement is not relevant to any interpretation of the terms and conditions of this Agreement. 
-	21.	Counterparts.   This Agreement may be executed by the Parties in one or more counterparts, and each of which when so executed shall be an original but all such counterparts shall constitute one and the same instrument.  The words “executed” shall be deemed to include electronic signatures or the keeping of records in electronic form, each of which shall be of the same legal effect, validity or enforceability as a manually executed signature or the use of a paper-based recordkeeping system, as the case may be, to the extent and as provided for in any applicable law, including the Federal Electronic Signatures in Global and National Commerce Act, or any other similar state laws based on the Uniform Electronic Transactions Act.
+	20.	Negotiated Agreement. &nbsp;Notwithstanding the general rules of construction, both parties acknowledge that each was given an equal opportunity to negotiate this Agreement, and agree that the identity of the drafter of this Agreement is not relevant to any interpretation of the terms and conditions of this Agreement. 
+	21.	Counterparts. &nbsp;&nbsp;This Agreement may be executed by the Parties in one or more counterparts, and each of which when so executed shall be an original but all such counterparts shall constitute one and the same instrument. &nbsp;The words “executed” shall be deemed to include electronic signatures or the keeping of records in electronic form, each of which shall be of the same legal effect, validity or enforceability as a manually executed signature or the use of a paper-based recordkeeping system, as the case may be, to the extent and as provided for in any applicable law, including the Federal Electronic Signatures in Global and National Commerce Act, or any other similar state laws based on the Uniform Electronic Transactions Act.
  [Remainder of page intentionally left blank]
 
 
