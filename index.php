@@ -5,10 +5,9 @@
 
 <html>
 	<head>
-		<title>Open Legal</title>
+		<title>Open Legal - the easiest way to create contracts</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<link rel="stylesheet" href="openlegal.css">
 		<script>
 
 			
@@ -29,6 +28,10 @@
 			
 			//created editable contract
 			$(document).on("click", ".edit", function(){
+
+				//contract 
+				$("#contract_text").show();
+				$("#contract_form").hide();
 
 				// save the html and height 
 				var divHtml = $("#contract_text").html();
@@ -70,6 +73,8 @@
 
 			});
 
+
+			//create an editable form from a contract
 			$(document).on("click","#contract_draft", function(){
 				
 				//grab contract text
@@ -85,160 +90,93 @@
 				var description = contract.match(regExp2);
 				var clean_description = description[0].replace(/\*\*/g,"");
 
+				//find optional contract variables
+				var regExp3 = /\{\{(.*?)\}\}/g;
+				var optional_matches = contract.match(regExp3);
+
 				//find non-optional contract variables
-				var regExp4 = /\[\[(.*?)\]\]/g;
+				var regExp4 = /\[\[(.*?)\]\]|\{\{(.*?)\}\}/g;
 				var matches = contract.match(regExp4);
 				var matches = jQuery.unique(matches);
+
 
 				//generate form
 				var form = "<h1>"+clean_title+"</h1><div id='contract_description'>"+clean_description+"</div>";
 				for (var i = 0; i < matches.length; i++) {
-    				var res = matches[i].replace("[[","");
-    				res = res.replace("]]","");
-    				res_id = res.replace(/\ /g,"_")
-    				form += "<div class='contract_variable'><input type='text' class='input_for_variable' id='"+res_id+"' value='"+res+"'/></div>";
+    				
+    				var res = matches[i];
+    				
+    				if(res.indexOf("{{")>=0){
+    					
+    					//get rid of enclosing squiglies
+    					var r = res.replace(/\{\{|\}\}/g,"");
+
+	    				//split optional variable into question and string with variable
+    					var ov = r.split("|");
+
+    					//grab optional variable from string
+    					var regExp5 = /\[\[(.*?)\]\]/g;
+						var v = ov[1].match(regExp5);
+						var v = v[0].replace(/\[\[|\]\]/g,"");
+    					v_id = v.replace(/\ /g,"_")
+
+    					//create form input
+    					form += "<div class='contract_variable'>"+ov[0]+"<div id='radio_"+i+"'><input type='radio' id='radio_"+i+"_yes' class='radio_yes radio_for_optional_variable' name='radio_"+i+"'>Yes<input type='radio' id='radio_"+i+"_no' class='radio_no radio_for_optional_variable' name='radio_"+i+"' checked>No</div><div class='contract_variable_optional' id='contract_variable_optional_"+i+"'><input type='text' class='input_for_variable' id='"+v_id+"' value='"+v+"'/></div></div>";
+
+    				} else {
+
+ 	   					res = res.replace(/\[\[|\]\]/g,"");
+    					res_id = res.replace(/\ /g,"_");
+    					form += "<div class='contract_variable'><input type='text' class='input_for_variable' id='"+res_id+"' value='"+res+"'/></div>";
+
+    				}
+
+    				
 				}
-				form += "<input type='submit' id='form_submit' value='Create Contract'>";
+
+				//add submit button
+				form += "<input type='submit' id='form_submit' value='Create Draft Contract'>";
+				
+				//hide contract text
 				$("#contract_text").hide();
+
+				//populate contract form
+				$("#contract_form").show();
 				$("#contract_form").html(form);
 			});
 
+			//clear/repopulate input values on forms
 			$(document).on("focus", ".input_for_variable",function(){
 				$(this).val("");
 			});
 
+			$(document).on("blur", ".input_for_variable",function(){
+				var id = $(this).attr('id');
+				id = id.replace(/\_/g," ")
+				$(this).val(id);
+			});
+
+			//on click of yes display variable in form
+			$(document).on("click", ".radio_yes",function(){
+				id = $(this).attr("id");
+				id_n = id.match(/\d+/g);
+				d = 'contract_variable_optional_'+id_n[0];
+				$('#'+d).show();
+			});
+
+			$(document).on("click", ".radio_no",function(){
+				id = $(this).attr("id");
+				id_n = id.match(/\d+/g);
+				d = 'contract_variable_optional_'+id_n[0];
+				$('#'+d).hide();
+			});
+
 
 		</script>
-		<style>
-			body {
-				margin:0;
-				font-size: 16px;
-				font-family:verdana;
-			}
-			#top {
-				background: black;
-				color:white;
-				font-size:36px;
-				padding:6px 9px;
-				letter-spacing: -3px;
-			}
-			#contract_text_container {
-				border-style: solid;
-    			border-width: 1px 2px 2px 1px;
-    			border-color:#181818;
-				padding:36px;
-				white-space: pre-line;
-				width:80%;
-				margin:auto;
-				background:white;
-				z-index: 1;
-				font-family:Times !important;
-			}
-
-			#contract_textarea {
-				display:block;
-				font-family: times;
-				font-size:16px;
-				border: none;
-
-			}
-
-			#contract_container {
-				position: relative;
-				padding:30px 0;
-				background:#f2f2f2;
-			}
-
-			#contract_actions {
-				position: absolute;
-				right:20px;
-				top:11px;
-				z-index: 3;
-				width:90px;
-				font-size:18px;
-				color:white;
-				text-align: center;
-				cursor: pointer;
-				font-family:verdana !important;
-			}
-
-			#contract_actions div {
-				margin: -8px 0 0;
-				height: 33px;
-				padding:6px;
-				cursor: pointer;
-				line-height: 33px;
-				z-index: 4;
-				border-radius: 6px;
-			}
-
-			#contract_draft {
-				background-color: orange;
-			}
-
-			#contract_preview {
-				background-color: blue;
-			}
-
-			.edit {
-				background-color: #1ed760;	
-			}
-
-			.save {
-				background-color: #ce5054;
-			}
-
-			.contract_variable {
-				margin:0 0 11px 0;
-			}
-
-			#contract_form {
-				font-family: verdana;
-				font-size:18px;
-				margin:-30px 0 0 0;
-			}
-
-			#contract_form h1 {
-				margin:0 0 18px 0;
-			}
-
-			#contract_description {
-				color:#ccc;
-				font-style: italic;
-				margin:0 0 18px 0;
-			}
-
-			.contract_variable input {
-				width:300px;
-				border:1px #a6a6a6 solid;
-				border-radius: 3px;
-				font-size: 18px;
-				padding:0 6px;
-				line-height:30px;
-				color:#ccc;
-			}
-
-			#form_submit {
-				margin:11px 0 0 0;
-				height:36px;
-				width:240px;
-				color:#fff;
-				background-color: red;
-				border: none;
-				font-size: 18px;
-				line-height: 36px;
-				border-radius: 6px;
-			}
-
-			#top-small {
-				font-size: 16px;
-				letter-spacing: -1px;
-			}
-		</style>
 	</head>
 	<body>
 		<div id="top">
-			<b>openlegal</b> <span id="top-small">| the easiest way to create contracts</span>
+			<a href="index.php"><b>openlegal</b></a> <span id="top-small">| the free respository of law</span>
 		</div>
 		<div id="contract_container">
 			<div id="contract_text_container">

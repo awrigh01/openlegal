@@ -4,7 +4,7 @@
 
 Effective Date: [[Effective Date]]
 
-This Consulting Agreement (the “Agreement”) is made as of the Effective Date set forth above by and between [[Client Name]]{{Is your client a legal entity?|, a [[Client Entity Type]]}} (“Client”) and [[Consultant Name]] (“Consultant”).
+This Consulting Agreement (the “Agreement”) is made as of the Effective Date set forth above by and between [[Client Name]]{{Is your client a legal entity?|, a [[Client Entity Type]]}} (“Client”) and [[Consultant Name]],{{Is your consultant a legal entity?|, a [[Consultant Entity Type]]}} (“Consultant”).
 
 	1.	''''Engagement of Services''''.  Client may issue Project Assignments to Consultant in the form attached to this Agreement as Exhibit A (“Project Assignment”).  Subject to the terms of this Agreement, Consultant will render the services set forth in Project Assignment(s) accepted by Consultant (the “Services”) by the completion dates set forth therein.  Except as otherwise provided in the applicable Project Assignment, Consultant will have exclusive control over the manner and means of performing the Services, including the choice of place and time.  Consultant will provide, at Consultant’s own expense, a place of work and all equipment, tools and other materials necessary to complete the Services; however, to the extent necessary to facilitate performance of the Services, Client may, in its discretion, make its equipment or facilities available to Consultant at Consultant’s request.  While on the Client’s premises, Consultant agrees to comply with Client’s then-current access rules and procedures, including those related to safety, security and confidentiality.  Consultant agrees and acknowledges that Consultant has no expectation of privacy with respect to Client’s telecommunications, networking or information processing systems (including stored computer files, email messages and voice messages) and that Consultant’s activities, including the sending or receiving of any files or messages, on or using those systems may be monitored, and the contents of such files and messages may be reviewed and disclosed, at any time, without notice.
 
@@ -30,7 +30,7 @@ Client does not guarantee to provide:  (i) a place where work on the services co
 
 	11.	''''Term and Termination'''. 
 
-               (a)	''Term''.  The term of this Agreement will commence on the Effective Date and terminate [[Term]] from the Effective Date (the “Initial Term”), unless otherwise terminated as provided for in this Agreement.
+               (a)	''Term''.  The term of this Agreement will commence on the Effective Date and terminate [[Contract Term]] from the Effective Date (the “Initial Term”), unless otherwise terminated as provided for in this Agreement.
 
                {{Will the contract have a renewal term?  | (b)	''Term Renewal''.  The Initial Term will automatically renew for successive [[Renewal Term]] (a “Renewal Term”) periods until either party gives the other party a notice of non-renewal at least thirty (30) days before the end of the then applicable term.}}
 
