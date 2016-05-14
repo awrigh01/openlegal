@@ -99,7 +99,6 @@
 				var matches = contract.match(regExp4);
 				var matches = jQuery.unique(matches);
 
-
 				//generate form
 				var form = "<h1>"+clean_title+"</h1><div id='contract_description'>"+clean_description+"</div>";
 				for (var i = 0; i < matches.length; i++) {
@@ -137,8 +136,16 @@
 				//add submit button
 				form += "<input type='submit' id='form_submit' value='Create Draft Contract'>";
 				
-				//hide contract text
-				$("#contract_text").hide();
+				//format contract text
+				$("#contract_text").addClass("draft");
+				reg = new RegExp('\\{'+title+'\\}', 'gi');
+				var contract_formated = contract;
+				contract_formated = contract_formated.replace(reg,"<b class='title'>"+clean_title+"</b>");
+				alert(contract_formated);
+
+				//set height of window
+				h=$("#contract_text").height()+120;
+				$("#contract_text_container").css({'height':h});
 
 				//populate contract form
 				$("#contract_form").show();

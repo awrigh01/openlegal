@@ -16,6 +16,7 @@ body {
 	color:#fff;
 }
 #contract_text_container {
+	position: relative;
 	border-style: solid;
 	border-width: 1px 2px 2px 1px;
 	border-color:#181818;
@@ -37,14 +38,13 @@ body {
 }
 
 #contract_container {
-	position: relative;
 	padding:30px 0;
 	background:#f2f2f2;
 }
 
 #contract_actions {
 	position: absolute;
-	right:20px;
+	right:-60px;
 	top:11px;
 	z-index: 3;
 	width:90px;
@@ -83,6 +83,13 @@ body {
 
 .contract_variable {
 	margin:0 0 11px 0;
+}
+
+.draft {
+	position: absolute;
+	right:11px;
+	top:170;
+	width:800px;
 }
 
 #contract_form {
