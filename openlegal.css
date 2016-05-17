@@ -15,6 +15,7 @@ body {
 	text-decoration: none;
 	color:#fff;
 }
+
 #contract_text_container {
 	position: relative;
 	border-style: solid;
@@ -26,7 +27,6 @@ body {
 	margin:auto;
 	background:white;
 	z-index: 1;
-	font-family:Times !important;
 }
 
 #contract_textarea {
@@ -93,9 +93,12 @@ body {
 }
 
 #contract_form {
+	float:left;
 	font-family: verdana;
 	font-size:18px;
-	margin:-30px 0 0 0;
+	margin:0 0 18px 0;
+	padding:18px 0 0 0;
+	width:330px;
 }
 
 #contract_form h1 {
@@ -105,8 +108,11 @@ body {
 #contract_description {
 	color:#ccc;
 	font-style: italic;
-	margin:0 0 18px 0;
 	font-size:14px;
+}
+
+#contract_text {
+	font-family: times !important;
 }
 
 input.input_for_variable {
@@ -121,8 +127,18 @@ input.input_for_variable {
 	margin: 0 0 18px 0;
 }
 
+.on {
+	color:#000 !important;
+	background-color: #ffffe0;
+	outline: none;
+}
+
 .radio_for_optional_variable {
 	margin: 0 18px;
+}
+
+.opt_lang {
+	display:none;
 }
 
 .contract_variable_optional {
