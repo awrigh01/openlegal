@@ -133,13 +133,39 @@ input.input_for_variable {
 	outline: none;
 }
 
+.filled {
+	background-color: #98fb98;
+}
+
 .radio_for_optional_variable {
 	margin: 0 18px;
 }
 
-.opt_lang {
+/*Formated Contract*/
+
+.contract-section {
+	text-indent:60px;
+	text-align: justify;
+}
+
+.first {
+	margin-top:18px !important;
+}
+
+.contract-section b {
+	margin: 0 0 0 30px;
+}
+
+.contract-sub-section {
+	text-indent:110px;
+	text-align: justify;
+	margin:0 0 12px 0;
+}
+
+.optional-clause {
 	display:none;
 }
+
 
 .contract_variable_optional {
 	margin:18px 0 0 0;
@@ -156,6 +182,24 @@ input.input_for_variable {
 	font-size: 18px;
 	line-height: 36px;
 	border-radius: 6px;
+}
+
+ol#main-sections {
+	list-style: decimal inside none;
+	margin:0;
+	padding:0;
+	text-indent: 60px;
+}
+
+ol.sub-sections {
+	list-style: lower-latin inside none;
+	margin:0;
+	padding:0;
+	text-indent: 110px;	
+}
+
+li {
+	margin:0 0 18px 0;
 }
 
 #top-small {

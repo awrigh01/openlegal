@@ -6,37 +6,34 @@
 <html>
 	<head>
 		<title>Open Legal - the easiest way to create contracts</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<script src="jquery.min.js"></script>
+		<script src="verbal.js"></script>
 		<link rel="stylesheet" href="openlegal.css">
 		<script>
 		
+			//a function to escape text from the contract so that it can form a valid regular expression
 			function escapeRegExp(str) {
   				return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 			}
 
+
+			//this function formats the contract 
 			function format_contract() {
-				//format contract_text 
 				
 				var formatted_contract_text = $("#contract_text").html();
-				formatted_contract_text = escapeRegExp(formatted_contract_text);
-
+				$("#contract_text").css({"white-space":"normal"});
+				
 				//get rid of title and description
 				formatted_contract_text = formatted_contract_text.replace(/(\=(.*?)\=)|\@\@(.*?)\@\@/g,"");
 				formatted_contract_text = formatted_contract_text.replace(/\n\n\n\n/g,"");
 
-				//kludge to fix the parens issue -- need to fix
-				//formatted_contract_text = formatted_contract_text.replace(/\(/g,"@");
-				//formatted_contract_text = formatted_contract_text.replace(/\)/g,"!");
-				//formatted_contract_text = formatted_contract_text.replace(/\[/g,"&");
-				//formatted_contract_text = formatted_contract_text.replace(/\]/g,"=");
+				//change formatting
+				var format = formatted_contract_text.match(/\'\'([^']+)\'\'|\'\'\'\'([^']+)\'\'\'\'/g);
 
-				//change formatting of sections
-				var sections = formatted_contract_text.match(/\'\'([a-zA-Z'[]\s]+)\'\'|\'\'\'\'([a-zA-Z\s]+)\'\'\'\'/g);
-
-				for (var i = 0; i < sections.length; i++) {
+				for (var i = 0; i < format.length; i++) {
 					
-					res=sections[i];
-					comma_count = sections[i].split("'").length - 1;
+					res=format[i];
+					comma_count = format[i].split("'").length - 1;
 				
 					if (comma_count==4) {
 						var res_replace = res.replace(/\'\'/g,"");
@@ -45,45 +42,73 @@
 						var res_replace = res.replace(/\'\'\'\'/g,"");
 						res_replace = "<b><u>"+res_replace+"</u></b>";
 					}
-
-					var re = new RegExp(res,"gim");
+					escaped_res = escapeRegExp(res);
+					var re = new RegExp(escaped_res,"g");
 					formatted_contract_text = formatted_contract_text.replace(re, res_replace);
 				}
-
+				
+				
 				//hide the optional text
-				var opt_lang = formatted_contract_text.match(/\{\{(.*?)\}\}/g);
+				var opt_lang = formatted_contract_text.match(/\{\{(.*?|[\n\r\t])\}\}/g);
 				for (var i=0; i < opt_lang.length; i++) {
 					
 					res=opt_lang[i];
-					var res_opt_lang = res.replace(/\{|\}/g,"");
-					res_opt_lang = "<div class='opt_lang'>"+res_opt_lang+"</div>";
-					var re = new RegExp(res,"gim");
-					console.log(re.test(formatted_contract_text));
-					formatted_contract_text = formatted_contract_text.replace(re, res_opt_lang);
+					//console.log(res);
+					var escaped_res = escapeRegExp(opt_lang[i]);
+					var res = "<span class='optional-clause'>"+res.replace(/\{|\}/g,"")+"</span>";
+					var re = new RegExp(escaped_res,"g");
+					formatted_contract_text = formatted_contract_text.replace(re, res);
 					
 				}
 
 				//number main sections
-				var num_sections = formatted_contract_text.match(/\#(.*)\#/g);
-				
-				for (var i=0; i < num_sections.length; i++) {
+				var sections = formatted_contract_text.match(/\#(.*|[\n\r\t])\#/g);
+
+				for (var i=0; i < sections.length; i++) {
 					
-					res=num_sections[i];
-					var par_num = i+1;
-					var res_num_replace = res.replace(/\#/g,"");
-					res_num_replace = "<div class='section'>"+par_num+"."+res_num_replace+"</div>";
-					var re = new RegExp(res,"g");
-					formatted_contract_text = formatted_contract_text.replace(re, res_num_replace);
+					var num = i+1;
+					var res=sections[i];
+					console.log(res);
+					
+					var sec="";
+					if (i==0) {
+						sec+="<ol id='main-sections'>";
+					}
+					sec+="<li class='contract-section'>"+res.replace(/(\r\n|\n|\r|\t|\#)/g,"")+"</li>";
+					if(i==(sections.length-1)) {
+						sec="</ol>";
+					}
+					escaped_res = escapeRegExp(sections[i]);
+					var re = new RegExp(escaped_res,"g");
+					formatted_contract_text = formatted_contract_text.replace(re, sec);
 				}
 
 				//number the subsections
+				var sub_sections = formatted_contract_text.match(/\*(.*?|[\n\r\t])\*/g);
 
-				//fix the kludge
-				//formatted_contract_text = formatted_contract_text.replace(/\@/g,"(");
-				//formatted_contract_text = formatted_contract_text.replace(/\!/g,")");
-				//formatted_contract_text = formatted_contract_text.replace(/\[/g,"&");
-				//formatted_contract_text = formatted_contract_text.replace(/\]/g,"=");
-				//formatted_contract_text=formatted_contract_text.replace(/\\/g,"");
+				for (var i=0; i < sub_sections.length; i++) {
+					
+					var res=sub_sections[i];
+					var sub_sec="";
+					if(i==0) {
+						sub_sec+="<ol class='sub-sections'>";
+					}
+					sub_sec+="<li class='"+((i==0)?" first":"")+"'>"+res.replace(/(\*)/g,"")+"</li>";
+					//var num = String.fromCharCode(97 + i); // where n is 0, 1, 2 ...
+					//res="<div class='contract-sub-section"+((i==0)?" first":"")+"'>"+"("+num+")"+res.replace(/(\*)/g,"")+"</div>";
+					if(i==(sub_sections.length-1)) {
+						sub_sec+="</ol>";
+					}
+
+					escaped_res = escapeRegExp(sub_sections[i]);
+					var re = new RegExp(escaped_res,"g");
+					formatted_contract_text = formatted_contract_text.replace(re, sub_sec);
+				}
+
+				//replace newlines with html line breaks
+				var expression = VerEx().find('\n');
+				formatted_contract_text = expression.replace(formatted_contract_text, '<br>');
+
 				return formatted_contract_text;
 			}
 
@@ -156,25 +181,20 @@
 				//grab contract text
 				var contract = $("#contract_text").html();
 				
-				
 				//find contract title
-				var regExp1 = /\=(.*?)\=/g;
-				var title = contract.match(regExp1);
+				var title = contract.match(/\=(.*?)\=/g);
 				var clean_title = title[0].replace(/\=/g,"");
 
 				//find contract description
-				var regExp2 = /\@\@(.*?)\@\@/g;
-				var description = contract.match(regExp2);
+				var description = contract.match(/\@\@(.*?)\@\@/g);
 				var clean_description = description[0].replace(/\@\@/g,"");
 
 
 				//find optional contract variables
-				var regExp3 = /\{\{(.*?)\}\}/g;
-				var optional_matches = contract.match(regExp3);
+				var optional_matches = contract.match(/\{\{(.*?)\}\}/g);
 
-				//find non-optional contract variables
-				var regExp4 = /\[\[(.*?)\]\]|\{\{(.*?)\}\}/g;
-				var matches = contract.match(regExp4);
+				//find non-optional contract variables;
+				var matches = contract.match(/\[\[(.*?)\]\]|\{\{(.*?)\}\}/g);
 				var matches = jQuery.unique(matches);
 
 				//generate title and description
@@ -191,17 +211,27 @@
     					//get rid of enclosing squiglies
     					var r = res.replace(/\{\{|\}\}/g,"");
 
-	    				//split optional variable into question and string with variable
+	    				//split optional variable into question and accompanying text
     					var ov = r.split("|");
+    					
+    					form+="<div class='contract_variable'>"+ov[1]
 
-    					//grab optional variable from string
-    					var regExp5 = /\[\[(.*?)\]\]/g;
-						var v = ov[1].match(regExp5);
-						var v = v[0].replace(/\[\[|\]\]/g,"");
-    					v_id = v.replace(/\ /g,"_")
+    					//check for variables in accompanying text
+						var v = ov[2].match(/\[\[(.*?)\]\]/g);
+						if(v) {
+							v = v[0].replace(/\[\[|\]\]/g,"");
+    						v_id = v.replace(/\ /g,"_")
 
-    					//create form input
-    					form += "<div class='contract_variable'>"+ov[0]+"<div id='radio_"+i+"'><input type='radio' id='radio_"+i+"_yes' class='radio_yes radio_for_optional_variable' name='radio_"+i+"'>Yes<input type='radio' id='radio_"+i+"_no' class='radio_no radio_for_optional_variable' name='radio_"+i+"' checked>No</div><div class='contract_variable_optional' id='contract_variable_optional_"+i+"'><input type='text' class='input_for_variable' id='"+v_id+"' value='"+v+"'/></div></div>";
+    						//create form input
+    						form += "<div id='radio_"+v_id+"'><input type='radio' id='radio_"+i+"_yes' class='radio_yes radio_for_optional_variable' name='radio_"+i+"'>Yes<input type='radio' id='radio_"+i+"_no' class='radio_no radio_for_optional_variable' name='radio_"+i+"' checked>No</div><div class='contract_variable_optional' id='contract_variable_optional_"+i+"'><input type='text' class='input_for_variable optional' id='"+v_id+"' value='"+v+"'/></div>";	
+						} else {
+
+							form += "<div id='radio_"+i+"'><input type='radio' id='radio_"+i+"_yes' class='radio_yes radio_for_optional_variable' name='radio_"+i+"'>Yes<input type='radio' id='radio_"+i+"_no' class='radio_no radio_for_optional_variable' name='radio_"+i+"' checked>No</div>";
+
+						}
+
+						form+="</div>";
+						
 
     				} else {
 
@@ -222,11 +252,16 @@
 				$("#contract_form").show();
 				$("#contract_form").html(form);
 				$("#contract_text_container").prepend(top);
+				
+				//fix br issue
+				var final_text = $("#main-sections").html();
+				final_text = final_text.replace(/\<br\>/g,"");
+				$("#main-sections").html(final_text);
 			});
 
 			//clear/repopulate input values on forms
 			$(document).on("focus", ".input_for_variable",function(){
-				if ($(this).hasClass("filled")==false) {
+				if ($(this).hasClass("filled-input")==false) {
 					$(this).val("");	
 				}
 				$(this).addClass("on");
@@ -246,10 +281,31 @@
 					$(this).val(variable);	
 					$(this).removeClass("on");
 				} else {
-					$(this).addClass("filled");
+					$(this).addClass("filled-input");
 					$(this).addClass("on");
 				}
 
+			});
+
+			//show optional text
+			$(document).on("focus", ".optional",function(){
+				id = $(this).attr("id");
+				variable = id.replace(/\_/g," ");
+				selected_option_text = $("span:contains('[["+variable+"]]')").html();
+				if ($("span:contains('[["+variable+"]]')")) {
+					new_text = selected_option_text.split("|");
+					$("span:contains('[["+variable+"]]')").html(new_text[2]).show();
+					$("span:contains('[["+variable+"]]')").attr("id","optional_"+id);	
+				}			
+			});
+
+			$(document).on("click", ".radio_no",function(){
+				p_id = $(this).parent().attr('id');
+				s_id = "optional_"+p_id.replace("radio_","");
+				if($("#"+s_id).length){
+					$("#"+s_id).hide();
+				}
+				
 			});
 
 			$(document).on("keyup", ".input_for_variable",function(){
@@ -261,7 +317,7 @@
 				//get value of field
 				var val = $(this).val();
 				
-				if ($(this).hasClass("filled")==false) {
+				if ($(this).hasClass("filled-input")==false) {
 
 						//set variable
 						var variable = "[["+variable+"]]";
@@ -270,14 +326,15 @@
 						var updated_contract_text = $("#contract_text").html();
 						
 						//update text
-						updated_contract_text = updated_contract_text.replace(variable,"<b id='filled_"+id+"'>"+val+"</b>");
+						var re = new RegExp(escapeRegExp(variable),"g")
+						updated_contract_text = updated_contract_text.replace(re,"<span class='filled f_"+id+"'>"+val+"</span>");
 
-						$(this).addClass("filled");
+						$(this).addClass("filled-input");
 
 					} else {
 
-						id="filled_"+id;
-						$("#"+id).html(val);
+						id="f_"+id;
+						$("."+id).html(val);
 					}
 					
 					$("#contract_text").html(updated_contract_text);
@@ -287,17 +344,48 @@
 
 			//on click of yes display variable in form
 			$(document).on("click", ".radio_yes",function(){
+				
+				//identifiy the variable from the ID of the form
 				id = $(this).attr("id");
 				id_n = id.match(/\d+/g);
 				d = 'contract_variable_optional_'+id_n[0];
-				$('#'+d).show();
+				
+				//if variable show
+				if ($('#'+d).length) {
+					$('#'+d).show();
+				//else just show the clause in the optional clause
+				} else {
+					var o_question = $(this).parent().parent().html().replace(/<div.*>/g,"");
+					$(".optional-clause").each(function(){
+						o = $(this).html();
+						o_clause = o.split("|");
+						if (o_question== o_clause[1]) {
+							$(this).html(o_clause[2]);
+							$(this).show().addClass('filled');
+						}
+					});
+				}
+
+				//check if optional field already filled in and show
+				p_id = $(this).parent().attr('id');
+				s_id = "optional_"+p_id.replace("radio_","");
+				if($("#"+s_id).length) {
+					$("#"+s_id).show();
+				}
+				
+
+
 			});
 
 			$(document).on("click", ".radio_no",function(){
 				id = $(this).attr("id");
 				id_n = id.match(/\d+/g);
 				d = 'contract_variable_optional_'+id_n[0];
-				$('#'+d).hide();
+				if ($('#'+d).length) {
+					$('#'+d).hide();
+				} else {
+					console.log("no variable");
+				}
 			});
 
 

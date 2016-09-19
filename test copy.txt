@@ -4,7 +4,7 @@
 
 Effective Date: [[Effective Date]]
 
-This Consulting Agreement (the "Agreement") is made as of the Effective Date set forth above by and between [[Client Name]]{{Client Entity Type | Is the client a legal entity?|, a [[Client Entity Type]]}} ("Client") and [[Consultant Name]]{{Customer Entity Type | Is the consultant a legal entity?|, a Delaware corporation }} ("Consultant").
+This Consulting Agreement (the "Agreement") is made as of the Effective Date set forth above by and between [[Client Name]]{{Is your client a legal entity?|, a [[Client Entity Type]]}} (""Client") and [[Consultant Name]],{{Is your consultant a legal entity?|, a [[Consultant Entity Type]]}} ("Consultant").
 
 	# ''''Engagement of Services''''.  Client may issue Project Assignments to Consultant in the form attached to this Agreement as Exhibit A ("Project Assignment").  Subject to the terms of this Agreement, Consultant will render the services set forth in Project Assignment(s) accepted by Consultant (the "Services") by the completion dates set forth therein.  Except as otherwise provided in the applicable Project Assignment, Consultant will have exclusive control over the manner and means of performing the Services, including the choice of place and time.  Consultant will provide, at Consultant's own expense, a place of work and all equipment, tools and other materials necessary to complete the Services; however, to the extent necessary to facilitate performance of the Services, Client may, in its discretion, make its equipment or facilities available to Consultant at Consultant's request.  While on the Client's premises, Consultant agrees to comply with Client's then-current access rules and procedures, including those related to safety, security and confidentiality.  Consultant agrees and acknowledges that Consultant has no expectation of privacy with respect to Client's telecommunications, networking or information processing systems (including stored computer files, email messages and voice messages) and that Consultant's activities, including the sending or receiving of any files or messages, on or using those systems may be monitored, and the contents of such files and messages may be reviewed and disclosed, at any time, without notice.# 
 
@@ -26,7 +26,7 @@ This Consulting Agreement (the "Agreement") is made as of the Effective Date set
 
 	# ''''No Conflict of Interest''''.  During the term of this Agreement, Consultant will not accept work, enter into a contract, or accept an obligation from any third party, inconsistent or incompatible with Consultant's obligations, or the scope of Services rendered for Client, under this Agreement.  Consultant warrants that there is no other contract or duty on its part inconsistent with this Agreement.  Consultant agrees to indemnify Client from any and all loss or liability incurred by reason of the alleged breach by Consultant of any services agreement with any third party.#
 
-	# ''''Term and Termination''''. *''Term''.  The term of this Agreement will commence on the Effective Date and terminate [[Contract Term]] from the Effective Date (the "Initial Term"), unless otherwise terminated as provided for in this Agreement.* {{Renewal Term | Will the contract have a renewal term?  | *''Term Renewal'' The Initial Term will automatically renew for successive [[Renewal Term]] (a "Renewal Term") periods until either party gives the other party a notice of non-renewal at least thirty (30) days before the end of the then applicable term.*}}*''Termination Without Cause''.  Client may terminate this Agreement with or without cause, at any time upon seven (7) days prior written notice to Consultant. Consultant may terminate this Agreement with or without cause, at any time when no Project Assignment is in effect, upon seven (7) days prior written notice to Client.* *''Termination for Cause''.  Either party may terminate this Agreement immediately in the event the other party has materially breached the Agreement and failed to cure such breach within seven (7) days of receipt of notice by the non-breaching party.* *''Survival''.  The rights and obligations contained in Section 3 ("Ownership of Work Product"), Section 4 ("Other Rights"), Section 5 ("License to Preexisting IP"), Section 6 ("Representations and Warranties"), Section 8 ("Confidential Information") and Section 12 ("Noninterference with Business") will survive any termination or expiration of this Agreement.*#
+	# ''''Term and Termination''''. *''Term''.  The term of this Agreement will commence on the Effective Date and terminate [[Contract Term]] from the Effective Date (the "Initial Term"), unless otherwise terminated as provided for in this Agreement. {{Will the contract have a renewal term?  | ''Term Renewal'' The Initial Term will automatically renew for successive [[Renewal Term]] (a "Renewal Term") periods until either party gives the other party a notice of non-renewal at least thirty (30) days before the end of the then applicable term.}}*''Termination Without Cause''.  Client may terminate this Agreement with or without cause, at any time upon seven (7) days prior written notice to Consultant. Consultant may terminate this Agreement with or without cause, at any time when no Project Assignment is in effect, upon seven (7) days prior written notice to Client.*''Termination for Cause''.  Either party may terminate this Agreement immediately in the event the other party has materially breached the Agreement and failed to cure such breach within seven (7) days of receipt of notice by the non-breaching party.*''Survival''.  The rights and obligations contained in Section 3 ("Ownership of Work Product"), Section 4 ("Other Rights"), Section 5 ("License to Preexisting IP"), Section 6 ("Representations and Warranties"), Section 8 ("Confidential Information") and Section 12 ("Noninterference with Business") will survive any termination or expiration of this Agreement.#
 
 	# ''''Noninterference with Business''''.  During this Agreement, and for a period of two (2) years immediately following its termination, Consultant agrees not to interfere with the business of Client in any manner.  By way of example and not of limitation, Consultant agrees not to solicit or induce any employee, independent contractor, or Client customer to terminate or breach an employment, contractual, or other relationship with Client.# 
 
@@ -44,11 +44,9 @@ This Consulting Agreement (the "Agreement") is made as of the Effective Date set
 
 	# ''''Entire Agreement''''.  This Agreement constitutes the entire agreement between the parties relating to this subject matter and supersedes all prior or contemporaneous oral or written agreements concerning such subject matter.  The terms of this Agreement will govern all services undertaken by Consultant for Client; provided, however, that in the event of any conflict between the terms of this Agreement and any Project Assignment, the terms of the applicable Project Assignment will control.  This Agreement may only be changed or amended by mutual agreement of authorized representatives of the parties in writing.#
 
-	#''''Negotiated Agreement''''. Notwithstanding the general rules of construction, both parties acknowledge that each was given an equal opportunity to negotiate this Agreement, and agree that the identity of the drafter of this Agreement is not relevant to any interpretation of the terms and conditions of this Agreement.#
+	# ''''Negotiated Agreement''''. Notwithstanding the general rules of construction, both parties acknowledge that each was given an equal opportunity to negotiate this Agreement, and agree that the identity of the drafter of this Agreement is not relevant to any interpretation of the terms and conditions of this Agreement.#
 
 	# ''''Counterparts''''. This Agreement may be executed by the Parties in one or more counterparts, and each of which when so executed shall be an original but all such counterparts shall constitute one and the same instrument. &nbsp;The words "executed" shall be deemed to include electronic signatures or the keeping of records in electronic form, each of which shall be of the same legal effect, validity or enforceability as a manually executed signature or the use of a paper-based recordkeeping system, as the case may be, to the extent and as provided for in any applicable law, including the Federal Electronic Signatures in Global and National Commerce Act, or any other similar state laws based on the Uniform Electronic Transactions Act.#
-
-	##
 
 	''IN WITNESS WHEREOF'', the parties have executed this Agreement as of the Effective Date.
 
@@ -56,12 +54,13 @@ This Consulting Agreement (the "Agreement") is made as of the Effective Date set
 ''[[Client Name]]''
 
 By: ____________________________
-
-{{Client Entity Type | no | Name: [[Client Signatory]] Title: [[Client Signatory Title]] Address: [[Client Street Address]] [[Client City]], [[Client State]] [[Client Zip Code]]}}
+Name:  	 [[Client Signatory]]
+Title:	 [[Client Signatory Title]]
+Address: [[Client Street Address]]
+         [[Client City]], [[Client State]] [[Client Zip Code]]
 
 ''CONSULTANT'':
 
 _______________________________
 Name:  [[Consultant Name]]
 
-{{Consultant Entity Type | no | Name: [[Consultant Signatory]] Title: [[Consultant Signatory Title]] Address: [[Consultant Street Address]] [[Consultant City]], [[Consultant State]] [[Consultant Zip Code]]}}
